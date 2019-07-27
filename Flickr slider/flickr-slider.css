@@ -1,0 +1,206 @@
+ 
+/* download full project from https://github.com/Shailenda/Flickr-slider-using-html-css-js/ */
+#flickr-slider {
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    padding-top:30px;
+    padding-bottom:10px;
+
+    margin:0 auto;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+#flickr-slider.fullscreen {
+    background:black;
+}
+
+#flickr-slider.fullscreen #flickr-slider-prev {
+    left: -50px; 
+}
+#flickr-slider.fullscreen #flickr-slider-next {
+    right: -50px;
+}
+
+
+#flickr-slider .fs-icon {
+    top:0px;
+    right:0px;
+    width:45px;
+    height:45px;
+    background: rgba(0,0,0,0.1) url(fullscreen.png) no-repeat 0 0;
+    z-index:2;
+    opacity:0;
+    -webkit-transition:opacity 0.8s;
+    transition:opacity 0.8s;
+}
+
+#flickr-slider:hover .fs-icon {
+    opacity: 1;
+}
+
+#flickr-slider.fullscreen .fs-icon {
+    background-position: center -45px;
+    opacity:1;
+}
+
+#flickr-slider .slider-inner {
+    max-width:700px;
+    margin:0 auto;/*center-aligned*/
+    font-size:0px;
+    position:relative;
+    box-sizing:border-box;
+}
+
+#flickr-slider.fullscreen .slider-inner {
+    max-width:900px;
+    max-height:80%;
+}
+
+#flickr-slider ul {
+    /*overflow:hidden;*/
+    position:relative;
+    list-style:none;
+    padding:0;
+    box-sizing:border-box;
+}
+
+#flickr-slider li {
+    background-color:#111;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    position: absolute;
+    font-size:12px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    opacity:0;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+#flickr-slider li.ns-show {
+    opacity:1;
+}
+
+
+
+/* --------- slider image ------- */  
+#flickr-slider .ns-img {
+    background-color:rgba(0,0,0,0.3);
+    background-size:contain;/*Note: If transitionType is zoom, it will be overridden to cover.*/
+
+    border-radius:3px;
+
+    cursor:default;
+    display:block;
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+
+/* ---------Arrow buttons ------- */   
+/* The arrow button id should be: slider id + ("-prev", "-next", and "-pause-play") */ 
+#flickr-slider-pause-play { display:none;}    
+
+#flickr-slider-prev, #flickr-slider-next
+{
+    position: absolute;
+    display:inline-block;
+    width:42px;
+    height:56px;
+    line-height:56px;
+    top: 50%;
+    margin-top:-28px;
+    background-color:rgba(0,0,0,0.4);
+    background-color:#ccc\9;/*IE8 hack*/
+    backface-visibility:hidden;
+    color:white;
+    overflow:hidden;
+    white-space:nowrap;
+    -webkit-user-select: none;
+    user-select:none;
+    border-radius:2px;
+    z-index:10;
+    opacity:0.3; 
+    font-family:sans-serif;   
+    font-size:13px;
+    cursor:pointer;
+    -webkit-transition:all 0.7s;
+    transition:all 0.7s;
+}
+
+.slider-inner:hover #flickr-slider-prev, .slider-inner:hover #flickr-slider-next {
+    opacity:1;
+}
+
+
+#flickr-slider-prev {
+    left: 0; 
+}
+#flickr-slider-next {
+    right: 0;
+}
+
+/* arrows */
+#flickr-slider-prev::before, #flickr-slider-next::before {
+    position: absolute;
+    top: 17px;
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+}
+
+#flickr-slider-prev::before {
+    -ms-transform:rotate(-45deg);/*IE 9*/
+    -webkit-transform:rotate(-45deg);
+    transform: rotate(-45deg);
+    backface-visibility:hidden;
+    right:4px;
+}
+
+#flickr-slider-next::before {
+    -ms-transform:rotate(135deg);/*IE 9*/
+    -webkit-transform:rotate(135deg);
+    transform: rotate(135deg);
+    backface-visibility:hidden;
+    left:4px;
+}
+
+
+/*pagination num within the arrow buttons*/
+#flickr-slider-prev div, #flickr-slider-next div {display:none;}
+
+
+/*------ pager(nav bullets) ------*/      
+/* The pager id should be: slider id + "-pager" */
+#flickr-slider-pager { display:none;}
+
+
+#flickr-slider-pager, #flickr-slider-prev, #flickr-slider-next, #flickr-slider-pause-play
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+/*Responsive settings*/
+@media only screen and (max-width:800px){
+
+    #flickr-slider-prev, #flickr-slider-next {
+        display:none;
+    }
+    #flickr-slider .fs-icon {
+        display:none;
+    }
+}
+
